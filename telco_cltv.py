@@ -6,7 +6,7 @@ pd.set_option('display.max_columns', 50)
 pd.set_option('display.float_format', lambda x: '%.5f' % x)
 
 #reading data
-df_ = pd.read_csv("HAFTA_06/1-Notes/Ödevler/Telco-Customer-Churn.csv")
+df_ = pd.read_csv("Telco-Customer-Churn.csv")
 df = df_.copy()
 df.head()
 
@@ -32,9 +32,8 @@ df["Contract"].replace("Two year",24,inplace=True)
 df["Contract"] = df["Contract"].astype(int)
 
 
-#Müşteriden aylık olarak tahsil edilen tutarı ile Müşterinin sözleşme süresini çarptığımızda toplam ödeceği tutarı bulabiliriz diye düşündüm.
-# “new_totalcharges” adında yeni bir değişken oluşturdum.
-# Bu yeni değişken ile “TotalCharges” değişkenini kıyasladığımda ikisinin farklı olduğunu gördüm.
+# I thought that when we multiply the monthly amount collected from the customer and the contract period of the customer, we can find the total amount to be paid.
+# I created a new variable called “new_totalcharges”.When I compared this new variable with the “TotalCharges” variable, I saw that the two were different.
 
 df["new_totalcharges"]=df["MonthlyCharges"]*df["Contract"]
 df[["new_totalcharges","TotalCharges"]].head()
@@ -101,5 +100,5 @@ final_df[final_df["segment"]=="D"].shape
 #number of customers with churn in the dataset
 df[df["Churn"]=="Yes"].shape
 
-#Churn, işletmenin bir dönem içerisinde kaybettiği müşteri sayısını ifade etmektedir.
+
 
